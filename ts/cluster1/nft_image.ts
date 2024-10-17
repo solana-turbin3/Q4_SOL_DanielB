@@ -1,4 +1,4 @@
-import wallet from "../wba-wallet.json"
+import wallet from "../../../../../rust-project/turbin3-wallet.json";
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults"
 import { createGenericFile, createSignerFromKeypair, signerIdentity } from "@metaplex-foundation/umi"
 import { irysUploader } from "@metaplex-foundation/umi-uploader-irys"
@@ -19,10 +19,11 @@ umi.use(signerIdentity(signer));
         //2. Convert image to generic file.
         //3. Upload image
 
-        // const image = ???
-
-        // const [myUri] = ??? 
-        // console.log("Your image URI: ", myUri);
+        const image = await readFile('/home/daniel/turbin3/generug.png');
+        const genericFile = createGenericFile(image, 'NFT-Dogpound-Charity',{contentType: 'image/png'});
+        const [myUri] = await umi.uploader.upload([genericFile]); 
+        
+        console.log("Your metadata URI: ", myUri.replace("arweave.net", "devnet.irys.xyz"));
     }
     catch(error) {
         console.log("Oops.. Something went wrong", error);
