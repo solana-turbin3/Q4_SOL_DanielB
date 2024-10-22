@@ -1,6 +1,6 @@
 use anchor_lang::{prelude::*, system_program::{transfer, Transfer}};
 
-declare_id!("J8Sm76JyN38hqBUXwrGetoYehkzCg4UcpQbzyfaii9Bc");
+declare_id!("84A9QmWkUe8ZT1kWnQxBUiPNC5rL4KKW8XgQw8hPfCxe");
 
 #[program]
 pub mod fgg {
