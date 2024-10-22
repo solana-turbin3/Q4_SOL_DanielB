@@ -17,7 +17,11 @@ const mint = generateSigner(umi);
 const sellerFeeBasisPoints = percentAmount(0, 2);
 
 const name = "Dogpound Charity NFT";
-const uri = "https://devnet.irys.xyz/29gGS3ZEDqv9PBwrm5KFUfwuhZrRGKXoSx7N9xuq6vWA";
+let uri = "https://arweave.net/29gGS3ZEDqv9PBwrm5KFUfwuhZrRGKXoSx7N9xuq6vWA";
+
+
+uri = uri.replace("arweave.net", "devnet.irys.xyz"); 
+
 const symbol = "DGC";
 // const description = "Dogpound Charity NFT - A Sol for a Bone !";
 // const image = "https://arweave.net/zpBs5PJR2eVwT2hGoMZg9aFbBu2MEYuKRwGnHkX3eAb";

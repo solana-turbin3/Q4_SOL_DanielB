@@ -22,11 +22,12 @@ umi.use(signerIdentity(signer));
     // https://docs.metaplex.com/programs/token-metadata/changelog/v1.0#json-structure
 
     const image = "https://devnet.irys.xyz/BrebUfRk4FVmQ1duqa7mGxqbr2jC3f6k8m5PZuZu7eMu";
+    
     const metadata = {
       name: "NFT-Dogpound-Charity",
       symbol: "DGC",
       description: "Dogpound Charity NFT - A Sol for a Bone !",
-      image: "https://devnet.irys.xyz/BrebUfRk4FVmQ1duqa7mGxqbr2jC3f6k8m5PZuZu7eMu",
+      image,
       attributes: [
         { trait_type: "trait1", value: "20"},
         { trait_type: "trait2", value: "30"},
@@ -49,6 +50,7 @@ umi.use(signerIdentity(signer));
       ],
     };
     const myUri = await umi.uploader.uploadJson(metadata);
+    
     console.log("Your metadata URI: ", myUri.replace("arweave.net", "devnet.irys.xyz"));
   } catch (error) {
     console.log("Oops.. Something went wrong", error);

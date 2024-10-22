@@ -1,9 +1,11 @@
-*wallet.json
-node_modules
-target
+.anchor
 .DS_Store
+target
+**/*.rs.bk
+node_modules
+test-ledger
+.yarn
 # Ignore logs and RocksDB files
 test-ledger/rocksdb/*.log
 test-ledger/rocksdb/*.sst
 test-ledger/validator-*.log
-test-ledger/*
