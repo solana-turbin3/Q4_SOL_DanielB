@@ -3,17 +3,17 @@ use anchor_lang::prelude::*;
 
 declare_id!("9sZpn4qSY2Xh5MEUbkFWxcJJaMwVePunGpxTNEtHkrtk");
 
-pub mod errors;
-pub mod entities;
-pub mod contexts; // Include the contexts module
-pub mod instructions;
+mod errors;
+mod entities;
+mod contexts; // Include the contexts module
+mod instructions;
 
 // use crate::errors::ErrorCode;
 // use crate::entities::{VeterinaryCabinet, Owner, Animal}; // Import structs if needed
-use crate::contexts::{AddVeterinaryCabinet, AddAnimal, AddOwner}; // Ensure these are correctly imported.
+use crate::contexts::*; // Ensure these are correctly imported.
 // use crate::instructions::{add_veterinary_cabinet, add_owner, add_animal, transfer_animal_ownership}; // Ensure these are correctly imported.
 
-const JOIN_FEE: u64 = 800_000; // 0.8 Lamports
+
 
 #[program]
 pub mod veterinary_system {
@@ -53,5 +53,15 @@ pub mod veterinary_system {
     ) -> Result<()> {
         // Delegate logic to instructions module
         instructions::add_animal(ctx, metadata, owner_id)
+    }
+
+    /// Transfer ownership of an Animal
+    pub fn transfer_animal_ownership(
+        ctx: Context<TransferOwnership>,
+        new_owner_id: String,
+    ) -> Result<()> {
+        // Delegate logic to instructions module
+        // mihg
+        instructions::transfer_animal_ownership(ctx, new_owner_id)
     }
 }

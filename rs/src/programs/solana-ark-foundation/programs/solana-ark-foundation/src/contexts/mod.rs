@@ -4,7 +4,7 @@ pub mod owner;
 pub mod veterinary;
 
 // Re-export context structs for program use
-pub use animal::{AddAnimal, TransferOwnership};
-pub use owner::AddOwner;
-pub use veterinary::AddVeterinaryCabinet;
-pub use mint_nft::MintVeterinaryCabinetNFT;
+pub use animal::*;
+pub use owner::*;
+pub use veterinary::*;
+pub use mint_nft::*;
