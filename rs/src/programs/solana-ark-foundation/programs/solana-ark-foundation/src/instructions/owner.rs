@@ -6,7 +6,7 @@ use crate::errors::ErrorCode;
 pub fn add_owner(
     ctx: Context<AddOwner>,
     owner_name: String,
-    animal_id: String,
+    veterinary_cabinet_id: String,
 ) -> Result<()> {
     let owner = &mut ctx.accounts.owner;
 
@@ -17,7 +17,7 @@ pub fn add_owner(
 
     // Initialize the owner PDA
     owner.name = owner_name;
-    owner.animal_id = animal_id;
+    owner.veterinary_cabinet_id = veterinary_cabinet_id;
     owner.wallet = ctx.accounts.payer.key();
 
     Ok(())

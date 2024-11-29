@@ -24,6 +24,9 @@ pub const JOIN_FEE: u64 = 800_000;
     if **payer.lamports.borrow() < JOIN_FEE {
         return err!(ErrorCode::InsufficientFee);
     }
+    if **fee_account.lamports.borrow() > JOIN_FEE {
+        return err!(ErrorCode::InsufficientFee);
+    }
 
     // Transfer lamports to the fee account
     **payer.lamports.borrow_mut() -= JOIN_FEE;
@@ -39,9 +42,7 @@ pub const JOIN_FEE: u64 = 800_000;
     cabinet.address = address;
     cabinet.wallet = payer.key();
     cabinet.expire_date = expire_date;
-
-    // Mint NFT for the cabinet (NFT minting logic placeholder)
-    // ...
+    cabinet.trust_score = 0;
 
     Ok(())
 }    

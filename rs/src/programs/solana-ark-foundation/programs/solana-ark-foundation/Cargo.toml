@@ -1,12 +1,15 @@
 [package]
-name = "marketplace"
+name = "solana_ark_foundation"
 version = "0.1.0"
-description = "Created with Anchor"
+description = "This is Solana Ark Foundation Pilot Program version 0.1.0" 
 edition = "2021"
+owner = "Daniel Burlacu"
+email = "daniel.burlacu@behindmakssociety.com"
+license = "MIT"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "marketplace"
+name = "solana_ark_foundation"
 
 [features]
 default = []
@@ -16,6 +19,10 @@ no-idl = []
 no-log-ix-name = []
 idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
 
+[profile.release]
+overflow-checks = true
+
 [dependencies]
-anchor-lang = { version = "0.30.1", features = ["init-if-needed"] }
-anchor-spl = { version = "0.30.1", features = ["metadata"] }
+anchor-lang = "0.30.1"
+anchor-spl = "0.30.1"
+mpl-token-metadata = "5.1.0"

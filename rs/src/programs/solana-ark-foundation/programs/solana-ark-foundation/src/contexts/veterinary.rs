@@ -3,7 +3,7 @@ use crate::entities::VeterinaryCabinet;
 
 #[derive(Accounts)]
 pub struct AddVeterinaryCabinet<'info> {
-    #[account(init, payer = payer, space = 8 + 320)] // Adjust space for VeterinaryCabinet struct
+    #[account(init, payer = payer, space = 8 + 328)] // Adjust space for VeterinaryCabinet struct
     pub cabinet: Account<'info, VeterinaryCabinet>,
     #[account(mut)]
     pub payer: Signer<'info>, // User paying the fee

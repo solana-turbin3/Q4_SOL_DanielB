@@ -11,4 +11,5 @@ pub struct VeterinaryCabinet {
     pub address: String,      // 4 bytes + address length
     pub wallet: Pubkey,       // 32 bytes
     pub expire_date: i64,     // 8 bytes
+    pub trust_score: u8,      // 1 byte
 }

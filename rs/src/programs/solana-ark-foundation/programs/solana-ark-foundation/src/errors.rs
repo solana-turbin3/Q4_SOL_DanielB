@@ -8,4 +8,6 @@ pub enum ErrorCode {
     InvalidMetadata,
     #[msg("Insufficient fee for joining the program.")]
     InsufficientFee,
+    #[msg("Too much fee for joining the program.")]
+    TooMuchFee,
 }

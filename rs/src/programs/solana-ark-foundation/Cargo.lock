@@ -239,7 +239,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "04bd077c34449319a1e4e0bc21cea572960c9ae0d0fefda0dd7c52fcc3c647a3"
 dependencies = [
  "anchor-lang",
- "mpl-token-metadata",
  "spl-associated-token-account",
  "spl-pod",
  "spl-token",
@@ -1255,14 +1254,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a7a70ba024b9dc04c27ea2f0c0548feb474ec5c54bba33a7f72f873a39d07b24"
 
 [[package]]
-name = "marketplace"
-version = "0.1.0"
-dependencies = [
- "anchor-lang",
- "anchor-spl",
-]
-
-[[package]]
 name = "memchr"
 version = "2.7.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1300,9 +1291,9 @@ dependencies = [
 
 [[package]]
 name = "mpl-token-metadata"
-version = "4.1.2"
+version = "5.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "caf0f61b553e424a6234af1268456972ee66c2222e1da89079242251fa7479e5"
+checksum = "989e6a3000e761d3b2d685662a3a9ee99826f9369fb033bd1bc7011b1cf02ed9"
 dependencies = [
  "borsh 0.10.4",
  "num-derive 0.3.3",
@@ -2057,6 +2048,15 @@ dependencies = [
  "subtle",
  "thiserror",
  "zeroize",
+]
+
+[[package]]
+name = "solana_ark_foundation"
+version = "0.1.0"
+dependencies = [
+ "anchor-lang",
+ "anchor-spl",
+ "mpl-token-metadata",
 ]
 
 [[package]]

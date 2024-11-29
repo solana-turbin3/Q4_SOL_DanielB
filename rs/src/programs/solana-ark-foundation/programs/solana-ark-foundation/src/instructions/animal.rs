@@ -23,18 +23,21 @@ use crate::errors::ErrorCode;
     Ok(())
 }
 
- /// Transfer Animal Ownership
- pub fn transfer_animal_ownership(
+pub fn transfer_animal_ownership(
     ctx: Context<TransferOwnership>,
     new_owner_id: String,
+    veterinary_cabinet_id: String,
 ) -> Result<()> {
     let animal = &mut ctx.accounts.animal;
 
-    // Update the owner ID for the animal PDA
-    animal.owner_id = new_owner_id.clone();
+    // Ensure the caller is a recognized veterinary cabinet
+    let cabinet_id = veterinary_cabinet_id.clone(); // Fix shadowing and cloning
+    if cabinet_id != animal.cabinet_id {
+        return err!(ErrorCode::UnauthorizedAccess);
+    }
 
-    // Mint updated NFT for the new owner (NFT minting logic placeholder)
-    // ...
+    // Update the owner ID for the animal PDA
+    animal.owner_id = new_owner_id;
 
     Ok(())
 }
