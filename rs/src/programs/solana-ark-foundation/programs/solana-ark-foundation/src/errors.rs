@@ -10,4 +10,14 @@ pub enum ErrorCode {
     InsufficientFee,
     #[msg("Too much fee for joining the program.")]
     TooMuchFee,
+    #[msg("Insufficient funds in the treasury.")]
+    InsufficientFunds,
+    #[msg("Admin PDA already initialized.")]
+    AdminAlreadyInitialized,
+    #[msg("Treasury PDA is already initialized.")]
+    TreasuryAlreadyInitialized,
+    #[msg("Provided treasury account is invalid.")]
+    InvalidTreasuryAccount,
+    #[msg("Missing signature.")]
+    MissingSignature,
 }

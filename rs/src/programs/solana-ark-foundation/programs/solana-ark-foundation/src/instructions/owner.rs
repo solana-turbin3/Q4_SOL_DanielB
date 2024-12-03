@@ -11,14 +11,14 @@ pub fn add_owner(
     let owner = &mut ctx.accounts.owner;
 
     // Ensure the caller is a recognized veterinary cabinet
-    if ctx.accounts.cabinet.wallet != ctx.accounts.payer.key() {
+    if ctx.accounts.cabinet.id != ctx.accounts.payer.key() {
         return err!(ErrorCode::UnauthorizedAccess);
     }
 
     // Initialize the owner PDA
     owner.name = owner_name;
     owner.veterinary_cabinet_id = veterinary_cabinet_id;
-    owner.wallet = ctx.accounts.payer.key();
+    owner.id = ctx.accounts.payer.key();
 
     Ok(())
 }

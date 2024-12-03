@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 // use anchor_spl::token::{self, Mint, MintTo, Token, TokenAccount};
 
-declare_id!("CeXpwgqj6qKpT5fBvpgUU9z6Xryt5nEyMqWvhnm3HkRK");
+declare_id!("3TA96hKrVWb9SxEA6mCfMgAfXdiJyDaZzb5MmfL4Bt71");
 
 mod errors;
 mod entities;
@@ -18,29 +18,26 @@ use crate::utils::*;
 #[program]
 pub mod veterinary_system {
     use super::*;
-    use crate::constants::ADMIN_SEED;
 
     pub fn initialize_admin(ctx: Context<InitializeAdmin>) -> Result<()> {
-        let (admin_pda, _bump) = Pubkey::find_program_address(&[ADMIN_SEED], ctx.program_id);
+        msg!("Initializing Admin PDA");
+        instructions::initialize_admin(ctx)
+    }
+
+    pub fn initialize_treasury(ctx: Context<InitializeTreasury>) -> Result<()> {
+        msg!("Initializing Treasury PDA");
+        instructions::initialize_treasury(ctx)
+    }
     
-        // Assign the derived `admin_pda` to the account.
-        instructions::initialize_admin(ctx, admin_pda)
-    }
     /// Add a new Veterinary Cabinet to the system
-    pub fn add_veterinary_cabinet(
-        ctx: Context<AddVeterinaryCabinet>,
-        name: String,
-        id: String,
-        phone: String,
-        country: String,
-        town: String,
-        postcode: String,
-        address: String,
-        expire_date: i64,
-    ) -> Result<()> {
-        // Delegate logic to instructions module
-        instructions::add_veterinary_cabinet(ctx, name, id, phone, country, town, postcode, address, expire_date)
-    }
+pub fn add_veterinary_cabinet(
+    ctx: Context<AddVeterinaryCabinet>,
+    info: [u8; 32],
+) -> Result<()> {
+    msg!("Adding Veterinary Cabinet");
+    // Delegate logic to instructions module
+    instructions::add_veterinary_cabinet(ctx,info)
+}
 
     /// Add a new Animal Owner
     pub fn add_animal_owner(
@@ -49,6 +46,7 @@ pub mod veterinary_system {
         animal_id: String,
     ) -> Result<()> {
         // Delegate logic to instructions module
+        msg!("Adding Animal Owner");
         instructions::add_owner(ctx, owner_name, animal_id)
     }
 
@@ -58,6 +56,7 @@ pub mod veterinary_system {
         metadata: String,
         owner_id: String,
     ) -> Result<()> {
+        msg!("Adding Animal");
         // Delegate logic to instructions module
         instructions::add_animal(ctx, metadata, owner_id)
     }
@@ -68,6 +67,7 @@ pub mod veterinary_system {
         new_owner_id: String,
         veterinary_cabinet_id: String,
     ) -> Result<()> {
+        msg!("Transferring Animal Ownership");
         // Delegate logic to instructions module
         // mihg
         instructions::transfer_animal_ownership(ctx, new_owner_id,  veterinary_cabinet_id)
@@ -79,6 +79,16 @@ pub mod veterinary_system {
         name: String,
         symbol: String,
     ) -> Result<()> {
+        msg!("Minting Veterinary Cabinet NFT");
         instructions::mint_veterinary_cabinet_nft(ctx, metadata_uri, name, symbol)
     }
+    
+    pub fn withdraw_from_treasury(
+        ctx: Context<WithdrawFromTreasury>,
+        amount: u64,
+    ) -> Result<()> {
+        msg!("Withdrawing from Treasury");
+        instructions::withdraw_from_treasury(ctx, amount)
+    }
+    
 }

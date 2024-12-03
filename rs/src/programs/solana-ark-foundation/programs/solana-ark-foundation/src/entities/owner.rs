@@ -4,5 +4,5 @@ use anchor_lang::prelude::*;
 pub struct Owner {
     pub name: String,       // 4 bytes + name length
     pub veterinary_cabinet_id: String,  // 4 bytes + animal ID length
-    pub wallet: Pubkey,     // 32 bytes
+    pub id: Pubkey,     // 32 bytes
 }

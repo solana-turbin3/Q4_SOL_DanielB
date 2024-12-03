@@ -8,11 +8,11 @@ pub struct MintVeterinaryCabinetNFT<'info> {
     pub payer: Signer<'info>, // Separate payer for transaction fees
 
     // Verify the caller is a cabinet member by linking to the wallet field in VeterinaryCabinet
-    #[account(mut, has_one = wallet)]
+    #[account(mut, has_one = id)]
     pub cabinet: Account<'info, VeterinaryCabinet>,
 
     /// Wallet signer for validation
-    pub wallet: Signer<'info>, // Add this line
+    pub id: Signer<'info>, // Add this line
 
     /// CHECK: This is not initialized; used as a PDA for master edition
     #[account(mut)]

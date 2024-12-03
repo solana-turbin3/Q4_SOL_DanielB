@@ -14,7 +14,7 @@ pub fn mint_veterinary_cabinet_nft(
     // Mint the NFT
 
        // Ensure the caller is a recognized veterinary cabinet
-    if ctx.accounts.cabinet.wallet != ctx.accounts.payer.key() {
+    if ctx.accounts.cabinet.id != ctx.accounts.payer.key() {
         return err!(ErrorCode::UnauthorizedAccess);
     }
     
