@@ -5,7 +5,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-solana_ark_foundation = "BrJyMjrMFJEhjE3MQpAqbe7PMRCg5j9bE56SfRKyjNqE"
+solana_ark_foundation = "4Jicu8p8VZ74CKXB6huWqqvYrc3khZqmXUFU6AxbSvLR"
 
 [registry]
 url = "https://api.apr.dev"

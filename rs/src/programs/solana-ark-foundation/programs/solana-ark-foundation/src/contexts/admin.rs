@@ -7,13 +7,13 @@ pub struct InitializeAdmin<'info> {
         init,
         payer = payer,
         space = 8 + 64, // Adjust for AdminAccount size
-        seeds = [b"admin"],
+        seeds = [b"admin".as_ref()],
         bump
     )]
     pub admin_pda: Account<'info, AdminAccount>,
 
     #[account(mut)]
     pub payer: Signer<'info>, // Wallet paying for the transaction
-
+    pub admin: Signer<'info>, // Admin as a separate signer
     pub system_program: Program<'info, System>,
 }
