@@ -11,7 +11,7 @@ pub struct InitializeTreasury<'info> {
     pub payer: Signer<'info>, // Payer funds the account creation
 
     #[account(
-        init,
+        init_if_needed,
         payer = payer,
         seeds = [b"treasury".as_ref()], // Unique seed tied to admin
         bump,

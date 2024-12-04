@@ -7,26 +7,24 @@ pub struct MintVeterinaryCabinetNFT<'info> {
     #[account(mut)]
     pub payer: Signer<'info>, // Separate payer for transaction fees
 
-    // Verify the caller is a cabinet member by linking to the wallet field in VeterinaryCabinet
     #[account(mut, has_one = id)]
-    pub cabinet: Account<'info, VeterinaryCabinet>,
+    pub cabinet: Account<'info, VeterinaryCabinet>, // Veterinary cabinet account
 
-    /// Wallet signer for validation
-    pub id: Signer<'info>, // Add this line
+    pub id: Signer<'info>, // Signer for validation
 
-    /// CHECK: This is not initialized; used as a PDA for master edition
+    /// CHECK: Master edition PDA
     #[account(mut)]
     pub master_edition: UncheckedAccount<'info>,
 
-    /// CHECK: Admin PDA for signing and paying transactions
-    #[account(seeds = [b"admin_pda"], bump)]
+    /// CHECK: Admin PDA for signing
+    #[account(seeds = [b"admin_pda".as_ref()], bump)]
     pub admin_pda: UncheckedAccount<'info>,
 
     #[account(mut)]
     pub mint: Account<'info, Mint>, // Mint account for the NFT
 
     #[account(mut)]
-    pub token_account: Account<'info, TokenAccount>, // Associated Token Account for mint
+    pub token_account: Account<'info, TokenAccount>, // Associated token account for mint
 
     /// CHECK: Metadata account (to be created)
     #[account(mut)]

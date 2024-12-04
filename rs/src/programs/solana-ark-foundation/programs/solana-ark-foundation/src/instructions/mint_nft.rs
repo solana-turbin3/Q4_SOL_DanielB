@@ -7,17 +7,29 @@ use crate::errors::ErrorCode;
 
 pub fn mint_veterinary_cabinet_nft(
     ctx: Context<MintVeterinaryCabinetNFT>,
-    metadata_uri: String, // URI for metadata (e.g., IPFS URL)
+    metadata_uri: String,
     name: String,
     symbol: String,
 ) -> Result<()> {
-    // Mint the NFT
+    msg!("Minting Veterinary Cabinet NFT");
 
-       // Ensure the caller is a recognized veterinary cabinet
+    // Validate inputs
+    if metadata_uri.len() > 200 {
+        return err!(ErrorCode::InvalidMetadataURI);
+    }
+    if name.len() > 32 {
+        return err!(ErrorCode::InvalidName);
+    }
+    if symbol.len() > 10 {
+        return err!(ErrorCode::InvalidSymbol);
+    }
+
+    // Validate cabinet ownership
     if ctx.accounts.cabinet.id != ctx.accounts.payer.key() {
         return err!(ErrorCode::UnauthorizedAccess);
     }
-    
+
+    // Mint the NFT
     let cpi_accounts = MintTo {
         mint: ctx.accounts.mint.to_account_info(),
         to: ctx.accounts.token_account.to_account_info(),
@@ -26,28 +38,28 @@ pub fn mint_veterinary_cabinet_nft(
     let cpi_ctx = CpiContext::new(ctx.accounts.token_program.to_account_info(), cpi_accounts);
     token::mint_to(cpi_ctx, 1)?; // Mint 1 token
 
-    // Prepare metadata creation instruction using the updated CreateV1Builder
+    // Prepare metadata creation instruction
     let instruction = CreateV1Builder::new()
-        .metadata(ctx.accounts.metadata_account.key())       // Metadata account public key
-        .master_edition(Some(ctx.accounts.master_edition.key())) // Master edition account public key
-        .mint(ctx.accounts.mint.key(), true)                 // Mint account public key and verify
-        .authority(ctx.accounts.admin_pda.key())             // Authority public key
-        .payer(ctx.accounts.payer.key())                     // Separate payer account
-        .update_authority(ctx.accounts.admin_pda.key(), true) // Update authority public key and verify
-        .is_mutable(true)                                    // Metadata is mutable
-        .primary_sale_happened(false)                        // Primary sale not happened
-        .name(name)                                          // NFT name
-        .symbol(symbol)                                      // NFT symbol
-        .uri(metadata_uri)                                   // Metadata URI
-        .seller_fee_basis_points(500)                        // 5% royalties
-        .token_standard(TokenStandard::NonFungible)          // NFT type
-        .print_supply(PrintSupply::Zero)                     // No prints
-        .instruction();                                      // Generate the instruction
+        .metadata(ctx.accounts.metadata_account.key())
+        .master_edition(Some(ctx.accounts.master_edition.key()))
+        .mint(ctx.accounts.mint.key(), true)
+        .authority(ctx.accounts.admin_pda.key())
+        .payer(ctx.accounts.payer.key())
+        .update_authority(ctx.accounts.admin_pda.key(), true)
+        .is_mutable(true)
+        .primary_sale_happened(false)
+        .name(name)
+        .symbol(symbol)
+        .uri(metadata_uri)
+        .seller_fee_basis_points(500)
+        .token_standard(TokenStandard::NonFungible)
+        .print_supply(PrintSupply::Zero)
+        .instruction();
 
-    // CPI Invocation
+    // CPI Invocation for metadata creation
     anchor_lang::solana_program::program::invoke_signed(
         &instruction,
-        &[ // Include payer in the list of required accounts
+        &[
             ctx.accounts.metadata_account.to_account_info(),
             ctx.accounts.master_edition.to_account_info(),
             ctx.accounts.mint.to_account_info(),
@@ -56,11 +68,13 @@ pub fn mint_veterinary_cabinet_nft(
             ctx.accounts.system_program.to_account_info(),
             ctx.accounts.payer.to_account_info(),
         ],
-        &[&[ // Signer seeds remain for the admin PDA
-            b"admin_pda",
-            &[ctx.bumps.admin_pda], // Access bump directly
+        &[&[
+            b"admin_pda".as_ref(),
+            &[ctx.bumps.admin_pda],
         ]],
     )?;
+
+    msg!("Veterinary Cabinet NFT minted successfully.");
 
     Ok(())
 }

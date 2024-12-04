@@ -20,4 +20,10 @@ pub enum ErrorCode {
     InvalidTreasuryAccount,
     #[msg("Missing signature.")]
     MissingSignature,
+    #[msg("Invalid symbol.")]
+    InvalidSymbol,
+    #[msg("Invalid name.")]
+    InvalidName,
+    #[msg("Invalid metadadataURI.")]
+    InvalidMetadataURI,    
 }

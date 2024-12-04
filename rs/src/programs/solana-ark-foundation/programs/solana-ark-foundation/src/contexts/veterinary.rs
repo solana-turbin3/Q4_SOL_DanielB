@@ -10,19 +10,18 @@ pub struct AddVeterinaryCabinet<'info> {
     pub payer: Signer<'info>, // Payer funds the account creation
 
     #[account(
-        init,
+        init_if_needed,
         payer = payer,
-        seeds = [b"cabinet", payer.key().as_ref()],
+        seeds =[b"cabinet".as_ref(), payer.key().as_ref()], // Seed for VeterinaryCabinet PDA
         bump,
         space = 8 + 256 // Account discriminator + VeterinaryCabinet fields
     )]
     pub cabinet: Account<'info, VeterinaryCabinet>,
 
-
     #[account(
-        init,
+        init_if_needed,
         payer = payer, // Payer funds the initialization
-        seeds = [b"treasury".as_ref(), admin.key().as_ref()], // Seed for Treasury PDA based on admin key
+        seeds = [b"treasury".as_ref()], // Seed for Treasury PDA based on admin key
         bump,
         space = 8 + 256 // Account discriminator + TreasuryAccount fields
     )]
