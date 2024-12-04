@@ -3,9 +3,7 @@
  use anchor_lang::solana_program::system_instruction;
  use crate::contexts::veterinary::AddVeterinaryCabinet;
  use crate::errors::ErrorCode;
- use crate::entities::VeterinaryCabinet;
- use chrono::{TimeZone, Utc};
- use chrono::Datelike;
+ use chrono::{TimeZone,Datelike};
  
  pub const JOIN_FEE: u64 = 800_000; // 0.8 SOL (in lamports)
  

@@ -7,3 +7,4 @@ test-ledger/rocksdb/*.log
 test-ledger/rocksdb/*.sst
 test-ledger/validator-*.log
 test-ledger/*
+rs/src/programs/mpl-token-metadata/*

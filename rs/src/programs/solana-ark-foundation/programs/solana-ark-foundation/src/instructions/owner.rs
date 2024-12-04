@@ -5,20 +5,30 @@ use crate::errors::ErrorCode;
 
 pub fn add_owner(
     ctx: Context<AddOwner>,
-    owner_name: String,
-    veterinary_cabinet_id: String,
+    info: [u8; 32],
 ) -> Result<()> {
     let owner = &mut ctx.accounts.owner;
-
+    let cabinet = &mut ctx.accounts.cabinet;
+    let payer = &ctx.accounts.payer;
+   
     // Ensure the caller is a recognized veterinary cabinet
-    if ctx.accounts.cabinet.id != ctx.accounts.payer.key() {
+    if cabinet.id != ctx.accounts.payer.key() {
         return err!(ErrorCode::UnauthorizedAccess);
     }
 
+       // Validate the provided info input
+    if info.iter().all(|&byte| byte == 0) {
+        return err!(ErrorCode::InvalidMetadata); // Ensure info is not empty
+    }
+    
     // Initialize the owner PDA
-    owner.name = owner_name;
-    owner.veterinary_cabinet_id = veterinary_cabinet_id;
+    owner.info = info;
+    owner.veterinary_cabinet_id = cabinet.key();
     owner.id = ctx.accounts.payer.key();
+    
+
+     // Log success
+     msg!("Animal owner added successfully: {}", cabinet.key());
 
     Ok(())
 }

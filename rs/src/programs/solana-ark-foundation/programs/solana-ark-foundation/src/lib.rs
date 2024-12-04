@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 // use anchor_spl::token::{self, Mint, MintTo, Token, TokenAccount};
 
-declare_id!("4u9ejdWEx3iUmrfQYAuKJ7L9HoH864pDx6WwL7EADeuW");
+declare_id!("H6eB3LauYEk4RxtjNH5dwteGAH8i5qy8ukdiSvtnYmhp");
 
 mod errors;
 mod entities;
@@ -42,36 +42,34 @@ pub fn add_veterinary_cabinet(
     /// Add a new Animal Owner
     pub fn add_animal_owner(
         ctx: Context<AddOwner>,
-        owner_name: String,
-        animal_id: String,
+        info: [u8; 32],
     ) -> Result<()> {
         // Delegate logic to instructions module
         msg!("Adding Animal Owner");
-        instructions::add_owner(ctx, owner_name, animal_id)
+        instructions::add_owner(ctx, info)
     }
 
     /// Add a new Animal
     pub fn add_animal(
         ctx: Context<AddAnimal>,
-        metadata: String,
-        owner_id: String,
+        info: [u8; 32],
     ) -> Result<()> {
         msg!("Adding Animal");
         // Delegate logic to instructions module
-        instructions::add_animal(ctx, metadata, owner_id)
+        instructions::add_animal(ctx, info)
     }
 
     /// Transfer ownership of an Animal
-    pub fn transfer_animal_ownership(
-        ctx: Context<TransferOwnership>,
-        new_owner_id: String,
-        veterinary_cabinet_id: String,
-    ) -> Result<()> {
-        msg!("Transferring Animal Ownership");
-        // Delegate logic to instructions module
-        // mihg
-        instructions::transfer_animal_ownership(ctx, new_owner_id,  veterinary_cabinet_id)
-    }
+    // pub fn transfer_animal_ownership(
+    //     ctx: Context<TransferOwnership>,
+    //     new_owner_id: String,
+    //     veterinary_cabinet_id: String,
+    // ) -> Result<()> {
+    //     msg!("Transferring Animal Ownership");
+    //     // Delegate logic to instructions module
+    //     // mihg
+    //     instructions::transfer_animal_ownership(ctx, new_owner_id,  veterinary_cabinet_id)
+    // }
 
     pub fn mint_veterinary_cabinet_nft(
         ctx: Context<MintVeterinaryCabinetNFT>,
@@ -83,12 +81,12 @@ pub fn add_veterinary_cabinet(
         instructions::mint_veterinary_cabinet_nft(ctx, metadata_uri, name, symbol)
     }
     
-    pub fn withdraw_from_treasury(
-        ctx: Context<WithdrawFromTreasury>,
-        amount: u64,
-    ) -> Result<()> {
-        msg!("Withdrawing from Treasury");
-        instructions::withdraw_from_treasury(ctx, amount)
-    }
+    // pub fn withdraw_from_treasury(
+    //     ctx: Context<WithdrawFromTreasury>,
+    //     amount: u64,
+    // ) -> Result<()> {
+    //     msg!("Withdrawing from Treasury");
+    //     instructions::withdraw_from_treasury(ctx, amount)
+    // }
     
 }

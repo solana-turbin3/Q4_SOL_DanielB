@@ -5,13 +5,14 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-solana_ark_foundation = "4u9ejdWEx3iUmrfQYAuKJ7L9HoH864pDx6WwL7EADeuW"
+mpl_token_metadata = "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
+solana_ark_foundation = "H6eB3LauYEk4RxtjNH5dwteGAH8i5qy8ukdiSvtnYmhp"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "http://127.0.0.1:8898"
+cluster = "https://api.devnet.solana.com"
 wallet = "~/.solana/.config/keypari.json"
 
 [scripts]
@@ -21,9 +22,3 @@ test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
 startup_wait = 5000
 shutdown_wait = 2000
 upgradeable = false
-
-[test.validator]
-bind_address = "0.0.0.0"
-url = "http://localhost:8898"
-ledger = ".anchor/test-ledger"
-rpc_port = 8899
