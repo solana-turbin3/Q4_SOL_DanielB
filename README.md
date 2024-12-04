@@ -6,7 +6,7 @@
 ---
 
 ### Project Details
-- **Project:**[Shortcut](https://github.com/solana-turbin3/Q4_SOL_DanielB/tree/master/rs/src/programs/solana-ark-foundation)
+- **Project:** [Shortcut](https://github.com/solana-turbin3/Q4_SOL_DanielB/tree/master/rs/src/programs/solana-ark-foundation)
 - **Program ID:** H6eB3LauYEk4RxtjNH5dwteGAH8i5qy8ukdiSvtnYmhp
 - **Block Explorer:** [Program-Address](https://explorer.solana.com/address/H6eB3LauYEk4RxtjNH5dwteGAH8i5qy8ukdiSvtnYmhp?cluster=devnet)
 
