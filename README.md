@@ -62,11 +62,15 @@ Created Animal NFT with mint: 4QndEkL3FmCkgpCFrZT14hwbSWHdDpRaxEhLkRSCNSdh
 ### Short video Presentation 
 [![YouTube Video](https://img.youtube.com/vi/g9bjPin-riU/0.jpg)](https://www.youtube.com/watch?v=g9bjPin-riU)
 
+ ---
+
 ### RoadMap
 <div align="center">
   <img src="https://bafkreig3vcifwzokofs2on2y7vrmtgziwsgsjy3h5m7ltetztalvvfrkjq.ipfs.flk-ipfs.xyz" alt="Logo" width="1200">
 </div>
 
+ ---
+ 
 ### Files Included 
 - **Project Architecture**
 - **Presentation**
