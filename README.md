@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Solana Ark Foundation</h1><h4>"The time to act is now ! ... before their silence becomes our legacy."</h4>
-  <img src="https://bafkreibllcqfjk5ch26tdq7sqotkq3xxlymivip6ta7rdjhaf2qccnzc7u.ipfs.flk-ipfs.xyz" alt="Logo" width="200">
+  <img src="https://bafkreibllcqfjk5ch26tdq7sqotkq3xxlymivip6ta7rdjhaf2qccnzc7u.ipfs.flk-ipfs.xyz" alt="Logo" width="400">
 </div>
 
 ---
@@ -58,8 +58,17 @@ Created Animal NFT with mint: 4QndEkL3FmCkgpCFrZT14hwbSWHdDpRaxEhLkRSCNSdh
 ```
 
  ---
+ 
+### Short video Presentation 
+[![YouTube Video](https://img.youtube.com/vi/g9bjPin-riU/0.jpg)](https://www.youtube.com/watch?v=g9bjPin-riU)
 
-### Files included in this repo
+### RoadMap
+<div align="center">
+  <img src="https://bafkreig3vcifwzokofs2on2y7vrmtgziwsgsjy3h5m7ltetztalvvfrkjq.ipfs.flk-ipfs.xyz" alt="Logo" width="1200">
+</div>
+
+### Files Included 
 - **Project Architecture**
 - **Presentation**
-- **Short video Presentation**
+
+
