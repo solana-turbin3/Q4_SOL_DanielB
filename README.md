@@ -75,5 +75,6 @@ Created Animal NFT with mint: 4QndEkL3FmCkgpCFrZT14hwbSWHdDpRaxEhLkRSCNSdh
 - **Project Architecture** : Solana Ark Foundation NEW Diagram.drawio
 - **Presentation** : The Solana Ark Foundation.pdf
 - **User Story** : User Story The Solana Ark Foundation.pdf
+- **Project Plan** : Project Plan.pdf
 
 
